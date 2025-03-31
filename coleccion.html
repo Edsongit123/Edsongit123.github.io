@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colección - Jerseys Retro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .collection-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .card-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+        }
+        .card {
+            width: 250px;
+            height: 350px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+        .card-link:hover .card {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background-color: white;
+            overflow: hidden;
+        }
+        .card-front {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card-front img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+            padding: 20px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .card-back h3 {
+            margin: 0 0 10px;
+            color: #2c3e50;
+        }
+        .card-back p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #333;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        footer p {
+            margin: 0;
+            color: white;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Colección de Jerseys Retro</h1>
+    </header>
+
+    <section class="collection-section">
+        <div class="card-gallery">
+            <!-- Fila 1 -->
+            <a href="compra.html" class="card-link">
+                <div class="card">
+                    <div class="card-front">
+                        <img src="/images/images1.jpg" alt="Jersey Retro 1">
+                    </div>
+                    <div class="card-back">
+                        <h3>Jersey Retro 1998</h3>
+                        <p>Edición especial del Mundial de Francia 1998. Fabricado en algodón premium, con detalles bordados y colores vibrantes que recuerdan aquella histórica victoria.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="compra.html" class="card-link">
+                <div class="card">
+                    <div class="card-front">
+                        <img src="/images/images2.jpg" alt="Jersey Retro 2">
+                    </div>
+                    <div class="card-back">
+                        <h3>Jersey Clásico 1986</h3>
+                        <p>Inspirado en la leyenda del fútbol de los 80. Diseño auténtico con escudo original y tejido transpirable para máxima comodidad.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="compra.html" class="card-link">
+                <div class="card">
+                    <div class="card-front">
+                        <img src="/images/images3.jpg" alt="Jersey Retro 3">
+                    </div>
+                    <div class="card-back">
+                        <h3>Jersey Vintage 1970</h3>
+                        <p>Un clásico de los 70 con colores icónicos. Perfecto para coleccionistas y amantes de la nostalgia futbolera.</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Fila 2 -->
+            <a href="compra.html" class="card-link">
+                <div class="card">
+                    <div class="card-front">
+                        <img src="/images/images4.jpg" alt="Jersey Retro 4">
+                    </div>
+                    <div class="card-back">
+                        <h3>Jersey Retro 1994</h3>
+                        <p>Diseño emblemático del Mundial de 1994. Material ligero y duradero, ideal para uso casual o deportivo.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="compra.html" class="card-link">
+                <div class="card">
+                    <div class="card-front">
+                        <img src="/images/images5.jpg" alt="Jersey Retro 5">
+                    </div>
+                    <div class="card-back">
+                        <h3>Jersey Clásico 1982</h3>
+                        <p>Revive los 80 con este diseño único. Colores intensos y ajuste perfecto para cualquier ocasión.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="compra.html" class="card-link">
+                <div class="card">
+                    <div class="card-front">
+                        <img src="/images/images6.jpg" alt="Jersey Retro 6">
+                    </div>
+                    <div class="card-back">
+                        <h3>Jersey Vintage 1966</h3>
+                        <p>Un homenaje al fútbol de los 60. Tejido de alta calidad con detalles retro auténticos.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Jerseys Retro - Todos los derechos reservados.</p>
+        <p>Contáctanos: info@jerseysretro.com | Síguenos en redes sociales</p>
+    </footer>
+
+    <script>
+        console.log("¡Cargada la colección de Jerseys Retro!");
+    </script>
+</body>
+</html>
