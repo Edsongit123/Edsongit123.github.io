@@ -42,6 +42,19 @@
         .cart-item span {
             font-size: 1.1em;
         }
+        .remove-button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+        }
+        .remove-button:hover {
+            background-color: #c0392b;
+        }
         .total {
             font-size: 1.5em;
             color: #e74c3c;
@@ -111,12 +124,19 @@
                         <span>${item.name}</span>
                         <span>Cantidad: ${item.quantity}</span>
                         <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                        <button class="remove-button" onclick="removeItem(${index})">Eliminar</button>
                     </div>
                 `).join('');
                 const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
                 cartTotal.innerHTML = `Total: $${total.toFixed(2)}`;
                 checkoutButton.style.display = 'inline-block';
             }
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1); // Elimina el ítem en la posición index
+            localStorage.setItem('cart', JSON.stringify(cart)); // Actualiza localStorage
+            displayCart(); // Refresca la vista del carrito
         }
 
         window.onload = function() {
