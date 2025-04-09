@@ -39,7 +39,21 @@
             color: #e74c3c;
             margin: 20px 0;
         }
-        .buy-button {
+        .quantity {
+            margin: 20px 0;
+        }
+        .quantity button {
+            padding: 5px 10px;
+            font-size: 1em;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .quantity button:hover {
+            background-color: #34495e;
+        }
+        .cart-button {
             display: inline-block;
             padding: 15px 30px;
             background-color: #e74c3c;
@@ -47,9 +61,37 @@
             text-decoration: none;
             border-radius: 5px;
             font-size: 1.1em;
+            cursor: pointer;
         }
-        .buy-button:hover {
+        .cart-button:hover {
             background-color: #c0392b;
+        }
+        .cart-section {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .cart-icon {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: white;
+            color: #e74c3c;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            font-size: 0.9em;
         }
         footer {
             background-color: #2c3e50;
@@ -73,12 +115,59 @@
         <img src="/images/images1.jpg" alt="Jersey Retro">
         <h2>Jersey Retro</h2>
         <p class="price">$49.99</p>
-        <a href="pago.html" class="buy-button">Proceder al Pago</a>
+        <div class="quantity">
+            <label for="quantity">Cantidad:</label>
+            <button onclick="changeQuantity(-1)">-</button>
+            <input type="number" id="quantity" min="1" value="1" style="width: 50px; text-align: center;">
+            <button onclick="changeQuantity(1)">+</button>
+        </div>
+        <button class="cart-button" onclick="addToCart()">Agregar al Carrito</button>
     </section>
 
+    <div class="cart-section">
+        <a href="carrito.html" class="cart-icon">
+            🛒
+            <span class="cart-count" id="cartCount">0</span>
+        </a>
+    </div>
 
+    <footer>
+        <p>© 2025 Jerseys Retro - Todos los derechos reservados.</p>
+    </footer>
 
     <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function addToCart() {
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const item = {
+                name: 'Jersey Retro',
+                price: 49.99,
+                quantity: quantity
+            };
+            cart.push(item);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            alert(`${quantity} playera(s) agregada(s) al carrito!`);
+        }
+
+        function changeQuantity(change) {
+            const quantityInput = document.getElementById('quantity');
+            let currentValue = parseInt(quantityInput.value);
+            currentValue += change;
+            if (currentValue < 1) currentValue = 1;
+            quantityInput.value = currentValue;
+        }
+
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').textContent = totalItems;
+        }
+
+        window.onload = function() {
+            updateCartCount();
+        };
+
         console.log("¡Cargada la página de compra!");
     </script>
 </body>
