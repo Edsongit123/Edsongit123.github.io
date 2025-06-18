@@ -158,6 +158,73 @@
             color: #ecf0f1;
             font-size: 1em;
         }
+        .reviews-section {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+        .reviews-section h2 {
+            color: #1a252f;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .review {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+            text-align: left;
+        }
+        .review:last-child {
+            border-bottom: none;
+        }
+        .review p {
+            margin: 5px 0;
+        }
+        .review .author {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .review .date {
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+        .review-form {
+            margin-top: 30px;
+            text-align: left;
+        }
+        .review-form h3 {
+            color: #1a252f;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        .review-form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+        .review-form input, .review-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .review-form button {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #e67e22, #d35400);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .review-form button:hover {
+            background: linear-gradient(135deg, #d35400, #e67e22);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -182,6 +249,35 @@
         <button class="cart-button" onclick="addToCart()">Agregar al Carrito</button>
     </section>
 
+    <section class="reviews-section">
+        <h2>Reseñas del Producto</h2>
+        <div class="review">
+            <p class="author">Juan Pérez</p>
+            <p class="date">15 de junio de 2025</p>
+            <p>¡Excelente calidad! El jersey es justo como se ve en las fotos, muy cómodo y los detalles son impresionantes. ¡100% recomendado!</p>
+        </div>
+        <div class="review">
+            <p class="author">María González</p>
+            <p class="date">10 de junio de 2025</p>
+            <p>Me encanta el diseño retro, trae muchos recuerdos. La tela es suave y el envío fue rapidísimo. ¡Volveré a comprar!</p>
+        </div>
+        <div class="review">
+            <p class="author">Carlos Ramírez</p>
+            <p class="date">5 de junio de 2025</p>
+            <p>Buen producto, aunque me gustaría que hubiera más tallas disponibles. Por lo demás, todo perfecto.</p>
+        </div>
+        <div class="review-form">
+            <h3>Deja tu reseña</h3>
+            <form id="reviewForm">
+                <label for="reviewName">Nombre:</label>
+                <input type="text" id="reviewName" required>
+                <label for="reviewText">Reseña:</label>
+                <textarea id="reviewText" rows="4" required></textarea>
+                <button type="submit">Enviar Reseña</button>
+            </form>
+        </div>
+    </section>
+
     <div class="cart-section">
         <a href="carrito.html" class="cart-icon">
             🛒
@@ -200,6 +296,7 @@
         window.onload = function() {
             updateProductDisplay();
             updateCartCount();
+            document.getElementById('reviewForm').addEventListener('submit', submitReview);
         };
 
         function updateProductDisplay() {
@@ -232,6 +329,26 @@
         function updateCartCount() {
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             document.getElementById('cartCount').textContent = totalItems;
+        }
+
+        function submitReview(event) {
+            event.preventDefault();
+            const name = document.getElementById('reviewName').value;
+            const text = document.getElementById('reviewText').value;
+            const date = new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+            
+            const reviewsSection = document.querySelector('.reviews-section');
+            const newReview = document.createElement('div');
+            newReview.classList.add('review');
+            newReview.innerHTML = `
+                <p class="author">${name}</p>
+                <p class="date">${date}</p>
+                <p>${text}</p>
+            `;
+            reviewsSection.insertBefore(newReview, document.querySelector('.review-form'));
+            
+            document.getElementById('reviewForm').reset();
+            alert('¡Reseña enviada con éxito!');
         }
 
         console.log("¡Cargada la página de compra!");
